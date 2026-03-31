@@ -1,0 +1,14 @@
+.glass-button {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 15px;
+  padding: 1rem;
+  width: 200px;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.glass-button.blue { border: 2px solid #4da6ff; }
+.glass-button.green { border: 2px solid #66cc66; }
+.glass-button.orange { border: 2px solid #ff9933; }

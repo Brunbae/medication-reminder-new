@@ -1,0 +1,88 @@
+.rappels-container {
+  min-height: 100vh;
+  background: #f0f6ff;
+}
+
+.rappels-header {
+  background: linear-gradient(135deg, #1a6bbf, #0d9488);
+  padding: 24px 20px 20px;
+}
+
+.rappels-header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.rappels-header p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.form-body {
+  padding: 20px 16px 32px;
+}
+
+.form-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px 20px;
+  box-shadow: 0 3px 16px rgba(0, 0, 0, 0.09);
+  max-width: 520px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a3a5c;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #d0e4f5;
+  border-radius: 12px;
+  font-size: 16px;
+  background: #f8fbff;
+  color: #1a3a5c;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #1a6bbf;
+  box-shadow: 0 0 0 4px rgba(26, 107, 191, 0.1);
+}
+
+.form-group input::placeholder {
+  color: #a0b8cc;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(90deg, #1a6bbf, #0d9488);
+  color: #ffffff;
+  border: none;
+  border-radius: 14px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 6px;
+  box-shadow: 0 4px 14px rgba(26, 107, 191, 0.3);
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.submit-btn:hover {
+  opacity: 0.92;
+  transform: scale(1.01);
+}
