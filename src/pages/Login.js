@@ -1,66 +1,70 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import AuthService from '../services/AuthService';
 import './Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
-  const [isError, setIsError] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
 
-  const handleLogin = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const response = await AuthService.login(email, password);
-      localStorage.setItem('user', JSON.stringify(response));
-      setIsError(false);
-      setMessage('✅ Connexion réussie !');
-      setTimeout(() => { window.location.href = '/dashboard'; }, 1000);
-    } catch (error) {
-      setIsError(true);
-      setMessage('❌ Email ou mot de passe incorrect.');
-    }
+    alert('Connexion réussie !');
   };
 
   return (
     <div className="login-container">
-      <div className="auth-card">
-        <div className="auth-icon">🔐</div>
-        <h1>Connexion</h1>
-        <p className="auth-subtitle">Accédez à vos rappels de médicaments</p>
+      <div className="login-card">
+        <div className="login-header">
+          <div className="login-icon">
+            <img src="/assets/pill-icon.svg" alt="Icône de pilule" />
+          </div>
+          <h1>Connexion</h1>
+          <p className="login-subtitle">Gérez vos rappels de médicaments</p>
+        </div>
 
-        <form className="auth-form" onSubmit={handleLogin}>
+        <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Adresse email</label>
+            <label>Adresse e-mail</label>
             <input
               type="email"
+              placeholder="exemple@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="votre@email.com"
               required
             />
           </div>
+
           <div className="form-group">
             <label>Mot de passe</label>
             <input
               type="password"
+              placeholder="Votre mot de passe"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
               required
             />
           </div>
+
+          <div className="form-options">
+            <label className="remember-me">
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+              />
+              Se souvenir de moi
+            </label>
+            <Link to="/forgot-password" className="forgot-link">
+              Mot de passe oublié ?
+            </Link>
+          </div>
+
           <button type="submit" className="auth-btn">Se connecter</button>
         </form>
 
-        {message && (
-          <p className={isError ? 'error-msg' : 'success-msg'}>{message}</p>
-        )}
-
         <div className="auth-footer">
-          Pas encore de compte ?{' '}
-          <Link to="/register">Créer un compte</Link>
+          Pas encore de compte ? <Link to="/register">Créer un compte</Link>
         </div>
       </div>
     </div>

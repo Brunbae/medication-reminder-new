@@ -1,93 +1,154 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { getReminders } from '../services/reminderService';
+// pages/Dashboard.js - VERSION CORRIGÉE
+import React, { useEffect, useState, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { getReminders, updateReminder, deleteReminder } from '../services/reminderService';
+import NotificationService from '../services/notificationService';
 import './Dashboard.css';
 
 const Dashboard = () => {
   const [reminders, setReminders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const intervalRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setReminders(getReminders());
+    const user = localStorage.getItem('user') || sessionStorage.getItem('user');
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+
+    loadReminders();
+    
+    intervalRef.current = setInterval(() => {
+      checkReminderTimes();
+    }, 60000);
+    
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
   }, []);
 
-  const handleDelete = (index) => {
-    const updated = reminders.filter((_, i) => i !== index);
-    localStorage.setItem('reminders', JSON.stringify(updated));
-    setReminders(updated);
+  const loadReminders = () => {
+    try {
+      const allReminders = getReminders();
+      const activeReminders = allReminders.filter(r => r.active !== false);
+      setReminders(activeReminders);
+    } catch (error) {
+      console.error("Erreur chargement rappels:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const getBadge = (heure) => {
-    const h = parseInt(heure?.split(':')[0] || 0);
-    if (h < 12) return { label: 'Matin', cls: 'badge-blue' };
-    if (h < 18) return { label: 'Après-midi', cls: 'badge-orange' };
-    return { label: 'Soir', cls: 'badge-green' };
+  const checkReminderTimes = () => {
+    const now = new Date();
+    const currentTime = now.toLocaleTimeString('fr-FR', { 
+      hour: '2-digit', 
+      minute: '2-digit' 
+    });
+    
+    reminders.forEach(reminder => {
+      if (reminder.time === currentTime && !reminder.triggered) {
+        NotificationService.showMedicationReminder(
+          reminder.medicationName,
+          reminder.dosage,
+          reminder.instructions,
+          reminder.id
+        );
+        
+        updateReminder(reminder.id, { 
+          triggered: true,
+          lastTriggered: new Date().toISOString()
+        });
+        
+        const tomorrow = new Date(now);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        tomorrow.setHours(0, 0, 0, 0);
+        const timeUntilTomorrow = tomorrow - now;
+        
+        setTimeout(() => {
+          updateReminder(reminder.id, { triggered: false });
+          loadReminders();
+        }, timeUntilTomorrow);
+      }
+    });
   };
 
-  const colors = ['#1d4ed8', '#15803d', '#c2410c', '#7c3aed', '#be185d'];
+  const markAsTaken = (id) => {
+    NotificationService.markReminderAsTaken(id);
+    updateReminder(id, { 
+      triggered: false,
+      lastTaken: new Date().toISOString()
+    });
+    alert("✅ Médicament pris ! Prochain rappel demain à la même heure.");
+    loadReminders();
+  };
+
+  const deleteReminderHandler = (id, medicationName) => {
+    if (window.confirm(`Supprimer le rappel pour ${medicationName} ?`)) {
+      deleteReminder(id);
+      loadReminders();
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="dashboard-container">
+        <div className="loading-spinner">⏳ Chargement des rappels...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
-        <div>
-          <h1>Mes Rappels</h1>
-          <p>Suivez vos prises du jour</p>
-        </div>
-        <Link to="/rappels" className="add-btn">+ Nouveau rappel</Link>
+        <h1>📋 Mes Rappels de Médicaments</h1>
+        <Link to="/rappels" className="add-btn">
+          + Ajouter un rappel
+        </Link>
       </div>
-
-      <div className="stats-row">
-        <div className="stat-card blue">
-          <div className="stat-value">{reminders.length}</div>
-          <div className="stat-label">Rappels actifs</div>
-        </div>
-        <div className="stat-card green">
-          <div className="stat-value">{reminders.length}/jour</div>
-          <div className="stat-label">Prises programmées</div>
-        </div>
-        <div className="stat-card orange">
-          <div className="stat-value">100%</div>
-          <div className="stat-label">Taux de suivi</div>
-        </div>
-      </div>
-
-      <div className="reminder-list">
+      
+      <div className="reminders-list">
         {reminders.length === 0 ? (
           <div className="empty-state">
-            <div className="empty-icon">💊</div>
-            <p>Aucun rappel programmé.</p>
-            <p style={{ fontSize: 14, marginTop: 8 }}>
-              Appuyez sur "+ Nouveau rappel" pour commencer.
-            </p>
+            <p>🎯 Aucun rappel pour le moment</p>
+            <Link to="/rappels" className="empty-add-btn">
+              Créer mon premier rappel
+            </Link>
           </div>
         ) : (
-          reminders.map((reminder, index) => {
-            const badge = getBadge(reminder.heure);
-            return (
-              <div key={index} className="reminder-item">
-                <div
-                  className="color-bar"
-                  style={{ background: colors[index % colors.length] }}
-                />
-                <div className="reminder-info">
-                  <div className="reminder-name">{reminder.medicament}</div>
-                  <div className="reminder-detail">
-                    {reminder.frequence} · {reminder.heure}
-                  </div>
-                </div>
-                <div className="reminder-right">
-                  <div className="reminder-time">{reminder.heure}</div>
-                  <span className={`badge ${badge.cls}`}>{badge.label}</span>
-                </div>
-                <button
-                  className="delete-btn"
-                  onClick={() => handleDelete(index)}
-                  title="Supprimer"
+          reminders.map(reminder => (
+            <div key={reminder.id} className={`reminder-card ${reminder.triggered ? 'triggered' : ''}`}>
+              <div className="reminder-info">
+                <h3>💊 {reminder.medicationName}</h3>
+                <p className="dosage">Dosage: {reminder.dosage}</p>
+                <p className="time">⏰ Heure: {reminder.time}</p>
+                {reminder.instructions && (
+                  <p className="instructions">📋 {reminder.instructions}</p>
+                )}
+                {reminder.triggered && (
+                  <p className="warning">⚠️ Rappel en cours !</p>
+                )}
+              </div>
+              <div className="reminder-actions">
+                <button 
+                  onClick={() => markAsTaken(reminder.id)}
+                  className="take-btn"
                 >
-                  🗑
+                  ✅ J'ai pris
+                </button>
+                <button 
+                  onClick={() => deleteReminderHandler(reminder.id, reminder.medicationName)}
+                  className="delete-btn"
+                >
+                  🗑️ Supprimer
                 </button>
               </div>
-            );
-          })
+            </div>
+          ))
         )}
       </div>
     </div>
