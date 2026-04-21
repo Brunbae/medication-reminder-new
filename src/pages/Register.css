@@ -2,7 +2,7 @@
 
 .rappels-container {
   min-height: 100vh;
-  background: linear-gradient(145deg, #0f2744 0%, #1a4a7a 40%, #0d6e6e 100%);
+  background: linear-gradient(145deg, #cce8f8 0%, #e8f4fd 40%, #f5f9ff 100%);
   display: flex;
   flex-direction: column;
   align-items: center;

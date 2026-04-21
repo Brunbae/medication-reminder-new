@@ -1,5 +1,7 @@
-﻿export const getReminders = () => {
-  return JSON.parse(localStorage.getItem("reminders")) || [];
+// services/reminderService.js
+
+export const getReminders = () => {
+  return JSON.parse(localStorage.getItem('reminders')) || [];
 };
 
 export const addReminder = (reminder) => {
@@ -12,7 +14,7 @@ export const addReminder = (reminder) => {
     createdAt: new Date().toISOString()
   };
   reminders.push(newReminder);
-  localStorage.setItem("reminders", JSON.stringify(reminders));
+  localStorage.setItem('reminders', JSON.stringify(reminders));
   return newReminder;
 };
 
@@ -21,7 +23,7 @@ export const updateReminder = (id, updates) => {
   const index = reminders.findIndex(r => r.id === id);
   if (index !== -1) {
     reminders[index] = { ...reminders[index], ...updates };
-    localStorage.setItem("reminders", JSON.stringify(reminders));
+    localStorage.setItem('reminders', JSON.stringify(reminders));
   }
   return reminders;
 };
@@ -29,7 +31,7 @@ export const updateReminder = (id, updates) => {
 export const deleteReminder = (id) => {
   const reminders = getReminders();
   const filtered = reminders.filter(r => r.id !== id);
-  localStorage.setItem("reminders", JSON.stringify(filtered));
+  localStorage.setItem('reminders', JSON.stringify(filtered));
   return filtered;
 };
 

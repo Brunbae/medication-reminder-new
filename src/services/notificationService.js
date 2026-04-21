@@ -1,4 +1,5 @@
-﻿import SoundService from "./SoundService";
+// services/notificationService.js
+import SoundService from './SoundService';
 
 class NotificationService {
   constructor() {
@@ -6,7 +7,10 @@ class NotificationService {
   }
 
   async requestPermission() {
-    if (!("Notification" in window)) return false;
+    if (!("Notification" in window)) {
+      console.log("Notifications non supportées");
+      return false;
+    }
     try {
       const permission = await Notification.requestPermission();
       this.permissionGranted = permission === "granted";
@@ -18,16 +22,23 @@ class NotificationService {
   }
 
   showNotification(title, options = {}) {
-    if (!this.permissionGranted) return null;
+    if (!this.permissionGranted) {
+      console.log("Permissions non accordées");
+      return null;
+    }
     try {
-      const notification = new Notification(title, {
+      const defaultOptions = {
         icon: "/logo192.png",
         requireInteraction: true,
         vibrate: [200, 100, 200],
         ...options
-      });
+      };
+      const notification = new Notification(title, defaultOptions);
       SoundService.playReminderSound();
-      notification.onclick = () => { window.focus(); notification.close(); };
+      notification.onclick = () => {
+        window.focus();
+        notification.close();
+      };
       return notification;
     } catch (error) {
       console.error("Erreur notification:", error);
@@ -39,7 +50,7 @@ class NotificationService {
     SoundService.playReminderSound();
     SoundService.startReminderLoop(reminderId, 3);
     return this.showNotification(`Rappel : ${medicationName}`, {
-      body: `${dosage ? dosage + "\n" : ""}${instructions || "Prenez vos medicaments"}`,
+      body: `${dosage ? dosage + '\n' : ''}${instructions || "Prenez vos medicaments"}`,
       requireInteraction: true,
     });
   }
@@ -58,7 +69,10 @@ class NotificationService {
 
   showConseil(title, message) {
     SoundService.playConseilSound();
-    return this.showNotification(`Conseil : ${title}`, { body: message, requireInteraction: false });
+    return this.showNotification(`Conseil : ${title}`, {
+      body: message,
+      requireInteraction: false
+    });
   }
 }
 
