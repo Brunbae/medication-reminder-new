@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://medicare-app.onrender.com/api/auth";
+const API_URL = "https://medication-backend-2jvi.onrender.com/api/auth";
 
 class AuthService {
   async register(user) {
