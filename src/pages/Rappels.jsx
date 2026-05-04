@@ -1,8 +1,7 @@
-// pages/Rappels.jsx
 import React, { useState, useEffect, useCallback } from 'react';
 import { addReminder, getReminders, updateReminder } from '../services/reminderService';
 import alarmService from '../services/alarmService';
-import './Rappels.css';
+import styles from './Rappels.module.css';
 
 const Rappels = () => {
   const [medicament, setMedicament] = useState('');
@@ -14,10 +13,9 @@ const Rappels = () => {
   const [audioEnabled, setAudioEnabled] = useState(false);
   const [message, setMessage] = useState('');
 
-  // Activer l'audio au premier clic
   const enableAudioAndTest = async () => {
-    const success = await alarmService.enableAudio();
-    if (success) {
+    const ok = await alarmService.enableAudio();
+    if (ok) {
       setAudioEnabled(true);
       await alarmService.testSound();
       setMessage('✅ Son activé ! Vous recevrez les alarmes');
@@ -38,91 +36,60 @@ const Rappels = () => {
     return reminders;
   };
 
-  // Planifier toutes les alarmes
   const scheduleAllAlarms = useCallback(() => {
     alarmService.clearAllTimeouts();
-    const activeReminders = remindersList.filter(r => r.active);
-    activeReminders.forEach(reminder => {
+    remindersList.filter(r => r.active).forEach(reminder => {
       alarmService.scheduleAlarm(reminder, handleAlarmTrigger);
     });
   }, [remindersList, handleAlarmTrigger]);
 
   useEffect(() => {
-    if (Notification.permission === 'default') {
-      Notification.requestPermission();
-    }
-    
+    if (Notification.permission === 'default') Notification.requestPermission();
     loadReminders();
-    
-    return () => {
-      alarmService.clearAllTimeouts();
-      alarmService.stopAlarm();
-    };
+    return () => { alarmService.clearAllTimeouts(); alarmService.stopAlarm(); };
   }, []);
 
-  useEffect(() => {
-    scheduleAllAlarms();
-  }, [scheduleAllAlarms]);
+  useEffect(() => { scheduleAllAlarms(); }, [scheduleAllAlarms]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     const newReminder = {
-      medicament,
-      heure,
-      frequence,
-      dosage,
-      active: true,
-      triggered: false,
-      lastTriggered: null,
-      createdAt: new Date().toISOString()
+      medicament, heure, frequence, dosage,
+      active: true, triggered: false,
+      lastTriggered: null, createdAt: new Date().toISOString()
     };
-    
-    const saved = addReminder(newReminder);
-    
-    if (audioEnabled) {
-      await alarmService.playConfirmation();
-    }
-    
+    addReminder(newReminder);
+    if (audioEnabled) await alarmService.playConfirmation();
     loadReminders();
     setMessage(`✅ Rappel ajouté pour ${medicament} à ${heure}`);
-    
-    setMedicament('');
-    setHeure('');
-    setFrequence('');
-    setDosage('');
+    setMedicament(''); setHeure(''); setFrequence(''); setDosage('');
     setSuccess(true);
-    
-    setTimeout(() => {
-      setSuccess(false);
-      setMessage('');
-    }, 3000);
+    setTimeout(() => { setSuccess(false); setMessage(''); }, 3000);
   };
 
   return (
-    <div className="rappels-container">
-      <div className="rappels-card">
-        <div className="rappels-header">
-          <div className="rappels-icon">💊</div>
+    <div className={styles.rappelsContainer}>
+      <div className={styles.rappelsCard}>
+        <div className={styles.rappelsHeader}>
+          <div className={styles.rappelsIcon}>💊</div>
           <h1>Programmer un rappel</h1>
           <p>Ajoutez un médicament et son horaire de prise</p>
         </div>
 
-        {/* Bouton d'activation audio - OBLIGATOIRE */}
         {!audioEnabled ? (
-          <button onClick={enableAudioAndTest} className="enable-audio-btn">
+          <button onClick={enableAudioAndTest} className={styles.enableAudioBtn}>
             🔔 ACTIVER LE SON DES ALARMES (cliquez ici d'abord)
           </button>
         ) : (
-          <div className="audio-enabled-badge">
+          <div className={styles.audioEnabledBadge}>
             ✅ Son activé - Les alarmes fonctionneront
           </div>
         )}
 
-        {message && <div className="info-message">{message}</div>}
+        {message && <div className={styles.infoMessage}>{message}</div>}
 
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
+          <div className={styles.formGroup}>
             <label>Nom du médicament</label>
             <input
               type="text"
@@ -133,8 +100,8 @@ const Rappels = () => {
             />
           </div>
 
-          <div className="form-row-2">
-            <div className="form-group">
+          <div className={styles.formRow2}>
+            <div className={styles.formGroup}>
               <label>Heure de prise</label>
               <input
                 type="time"
@@ -143,8 +110,7 @@ const Rappels = () => {
                 required
               />
             </div>
-
-            <div className="form-group">
+            <div className={styles.formGroup}>
               <label>Fréquence</label>
               <select
                 value={frequence}
@@ -159,7 +125,7 @@ const Rappels = () => {
             </div>
           </div>
 
-          <div className="form-group">
+          <div className={styles.formGroup}>
             <label>Dosage (optionnel)</label>
             <input
               type="text"
@@ -169,22 +135,18 @@ const Rappels = () => {
             />
           </div>
 
-          <button type="submit" className="submit-btn" disabled={!audioEnabled}>
+          <button type="submit" className={styles.submitBtn} disabled={!audioEnabled}>
             Ajouter le rappel
           </button>
 
-          {success && (
-            <div className="success-banner">
-              ✅ Rappel ajouté !
-            </div>
-          )}
+          {success && <div className={styles.successBanner}>✅ Rappel ajouté !</div>}
         </form>
 
         {remindersList.length > 0 && (
-          <div className="reminders-list">
+          <div className={styles.remindersList}>
             <h3>📋 Vos rappels :</h3>
             {remindersList.map(reminder => (
-              <div key={reminder.id} className="reminder-item">
+              <div key={reminder.id} className={styles.reminderItem}>
                 <strong>{reminder.medicament}</strong>
                 <span>⏰ {reminder.heure}</span>
                 <span>🔄 {reminder.frequence}</span>

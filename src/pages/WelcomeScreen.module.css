@@ -1,12 +1,21 @@
-.welcome-container {
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
+.welcomeContainer {
   min-height: 100vh;
   background: linear-gradient(180deg, #cce8f8 0%, #e8f4fd 45%, #f5f9ff 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: 'Nunito', sans-serif;
 }
 
-/* Hero section */
+.overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
 .header {
   text-align: center;
   padding: 36px 24px 20px;
@@ -28,24 +37,17 @@
   line-height: 1.5;
 }
 
-.divider {
-  width: calc(100% - 40px);
-  height: 1.5px;
-  background: linear-gradient(90deg, transparent, #b0d4ee, transparent);
-  margin: 4px 0 20px;
-}
-
-/* Cards */
-.glass-buttons {
+.glassButtons {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
   padding: 0 20px;
   width: 100%;
   max-width: 700px;
+  margin-top: 20px;
 }
 
-.glass-button {
+.glassButton {
   border-radius: 18px;
   padding: 20px 14px 18px;
   text-align: center;
@@ -53,17 +55,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.14);
   transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
 }
 
-.glass-button:hover {
+.glassButton:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
 }
 
-.glass-button h2 {
+.glassButton h2 {
   font-size: 15px;
   font-weight: 700;
   color: #ffffff;
@@ -71,18 +73,18 @@
   line-height: 1.3;
 }
 
-.glass-button p {
+.glassButton p {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.88);
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255,255,255,0.88);
+  border-top: 1px solid rgba(255,255,255,0.3);
   padding-top: 10px;
   width: 100%;
 }
 
-.glass-button .card-icon {
+.cardIcon {
   width: 54px;
   height: 54px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255,255,255,0.2);
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -91,20 +93,11 @@
   font-size: 24px;
 }
 
-.blue {
-  background: linear-gradient(160deg, #1e6fcf, #1558a8);
-}
+.blue  { background: linear-gradient(160deg, #1e6fcf, #1558a8); }
+.green { background: linear-gradient(160deg, #27a34a, #1e8038); }
+.orange{ background: linear-gradient(160deg, #e07b10, #c46208); }
 
-.green {
-  background: linear-gradient(160deg, #27a34a, #1e8038);
-}
-
-.orange {
-  background: linear-gradient(160deg, #e07b10, #c46208);
-}
-
-/* Start button */
-.start-button {
+.startButton {
   margin: 24px 20px 0;
   width: calc(100% - 40px);
   max-width: 400px;
@@ -116,42 +109,36 @@
   font-size: 20px;
   font-weight: 800;
   cursor: pointer;
-  box-shadow: 0 5px 18px rgba(13, 148, 136, 0.4);
+  box-shadow: 0 5px 18px rgba(13,148,136,0.4);
   transition: opacity 0.2s, transform 0.15s;
-  letter-spacing: 0.2px;
+  font-family: 'Nunito', sans-serif;
 }
 
-.start-button:hover {
+.startButton:hover {
   opacity: 0.92;
   transform: scale(1.02);
 }
 
-/* Footer links */
-.footer-links {
+.footerLinks {
   display: flex;
   align-items: center;
   gap: 16px;
   margin-top: 18px;
   padding-bottom: 28px;
   font-size: 16px;
+  font-family: 'Nunito', sans-serif;
 }
 
-.footer-links a {
+.footerLinks a {
   color: #1a6bbf;
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
-.footer-links a:hover {
-  color: #0d9488;
-}
+.footerLinks a:hover { color: #0d9488; }
 
 @media (max-width: 600px) {
-  .glass-buttons {
-    grid-template-columns: 1fr;
-  }
-  .header h1 {
-    font-size: 28px;
-  }
+  .glassButtons { grid-template-columns: 1fr; }
+  .header h1 { font-size: 28px; }
 }

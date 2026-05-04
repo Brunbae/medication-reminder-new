@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Login.css';
+import styles from './Login.module.css'; // ⚡ Import CSS Modules
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -13,18 +13,18 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-card">
-        <div className="login-header">
-          <div className="login-icon">
+    <div className={styles.loginContainer}>
+      <div className={styles.loginCard}>
+        <div className={styles.loginHeader}>
+          <div className={styles.loginIcon}>
             <img src="/assets/pill-icon.svg" alt="Icône de pilule" />
           </div>
           <h1>Connexion</h1>
-          <p className="login-subtitle">Gérez vos rappels de médicaments</p>
+          <p className={styles.loginSubtitle}>Gérez vos rappels de médicaments</p>
         </div>
 
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
+          <div className={styles.formGroup}>
             <label>Adresse e-mail</label>
             <input
               type="email"
@@ -35,7 +35,7 @@ const Login = () => {
             />
           </div>
 
-          <div className="form-group">
+          <div className={styles.formGroup}>
             <label>Mot de passe</label>
             <input
               type="password"
@@ -46,8 +46,8 @@ const Login = () => {
             />
           </div>
 
-          <div className="form-options">
-            <label className="remember-me">
+          <div className={styles.formOptions}>
+            <label className={styles.rememberMe}>
               <input
                 type="checkbox"
                 checked={rememberMe}
@@ -55,15 +55,15 @@ const Login = () => {
               />
               Se souvenir de moi
             </label>
-            <Link to="/forgot-password" className="forgot-link">
+            <Link to="/forgot-password" className={styles.forgotLink}>
               Mot de passe oublié ?
             </Link>
           </div>
 
-          <button type="submit" className="auth-btn">Se connecter</button>
+          <button type="submit" className={styles.authBtn}>Se connecter</button>
         </form>
 
-        <div className="auth-footer">
+        <div className={styles.authFooter}>
           Pas encore de compte ? <Link to="/register">Créer un compte</Link>
         </div>
       </div>

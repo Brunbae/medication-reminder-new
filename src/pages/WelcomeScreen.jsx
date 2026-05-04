@@ -1,41 +1,39 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './WelcomeScreen.css';
+import styles from './WelcomeScreen.module.css';
 
 const WelcomeScreen = () => {
   return (
-    <div className="welcome-container">
-      <div className="overlay">
-        <div className="header">
+    <div className={styles.welcomeContainer}>
+      <div className={styles.overlay}>
+        <div className={styles.header}>
           <h1>❤️ Bienvenue !</h1>
           <p>Votre compagnon pour ne plus oublier vos médicaments</p>
         </div>
 
-        <div className="glass-buttons">
-          <Link to="/rappels" className="glass-button blue">
-            <div className="card-icon">💊</div>
+        <div className={styles.glassButtons}>
+          <Link to="/rappels" className={`${styles.glassButton} ${styles.blue}`}>
+            <div className={styles.cardIcon}>💊</div>
             <h2>Rappels de Médicaments</h2>
             <p>Gérez vos prises</p>
           </Link>
-          <Link to="/dashboard" className="glass-button green">
-            <div className="card-icon">📈</div>
+          <Link to="/dashboard" className={`${styles.glassButton} ${styles.green}`}>
+            <div className={styles.cardIcon}>📈</div>
             <h2>Suivi de Santé</h2>
             <p>Suivez votre santé</p>
           </Link>
-          <Link to="/register" className="glass-button orange">
-            <div className="card-icon">💡</div>
+          <Link to="/conseils" className={`${styles.glassButton} ${styles.orange}`}>
+            <div className={styles.cardIcon}>💡</div>
             <h2>Astuces &amp; Conseils</h2>
             <p>Obtenez des infos utiles</p>
           </Link>
         </div>
 
         <Link to="/rappels">
-          <button className="start-button">Démarrer</button>
+          <button className={styles.startButton}>Démarrer</button>
         </Link>
 
-        <Link to="/conseils" className="glass-button orange"></Link>
-
-        <div className="footer-links">
+        <div className={styles.footerLinks}>
           <Link to="/login">Connexion</Link>
           <span>|</span>
           <Link to="/register">Créer un Compte</Link>

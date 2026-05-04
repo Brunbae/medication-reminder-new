@@ -1,0 +1,105 @@
+.loginContainer {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(145deg, #0f2744, #1a4a7a);
+  font-family: 'Nunito', sans-serif;
+}
+
+.loginCard {
+  background: #fff;
+  padding: 32px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  width: 100%;
+  max-width: 420px;
+}
+
+.loginHeader {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.loginIcon img {
+  width: 60px;
+  margin-bottom: 10px;
+}
+
+.loginSubtitle {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.formGroup {
+  margin-bottom: 18px;
+}
+
+.formGroup label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #1e293b;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 2px solid #e2e8f0;
+  background: #f8fafc;
+  font-size: 15px;
+  outline: none;
+}
+
+.formGroup input:focus {
+  border-color: #0d9488;
+  box-shadow: 0 0 0 3px rgba(13,148,136,0.2);
+}
+
+.formOptions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.rememberMe {
+  font-size: 14px;
+  color: #1e293b;
+}
+
+.forgotLink {
+  font-size: 14px;
+  color: #0ea5e9;
+  text-decoration: none;
+}
+
+.forgotLink:hover {
+  text-decoration: underline;
+}
+
+.authBtn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #0d9488, #0ea5e9);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-weight: 800;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.authBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(13,148,136,0.4);
+}
+
+.authFooter {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+}

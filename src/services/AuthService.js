@@ -40,4 +40,5 @@ axios.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-export default new AuthService();
+const authService = new AuthService();
+export default authService;

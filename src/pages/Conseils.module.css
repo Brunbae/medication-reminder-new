@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
+.conseilsContainer {
+  min-height: 100vh;
+  background: linear-gradient(145deg, #0f2744 0%, #1a4a7a 40%, #0d6e6e 100%);
+  padding: 40px 20px 60px;
+  font-family: 'Nunito', sans-serif;
+}
+
+.conseilsHeader {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.conseilsHeader h1 {
+  font-size: 28px;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.conseilsHeader p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.7);
+  font-weight: 600;
+}
+
+.categoriesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  max-width: 700px;
+  margin: 0 auto 32px;
+}
+
+.categoryBtn {
+  padding: 14px 10px;
+  background: rgba(255,255,255,0.1);
+  border: 2px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+  color: rgba(255,255,255,0.85);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.categoryBtn:hover {
+  background: rgba(255,255,255,0.2);
+  border-color: rgba(255,255,255,0.3);
+  color: #ffffff;
+}
+
+.categoryBtn.active {
+  background: linear-gradient(135deg, #0d9488, #0ea5e9);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(13,148,136,0.4);
+}
+
+.conseilsResult {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.conseilCard {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.conseilCard h2 {
+  font-size: 20px;
+  font-weight: 900;
+  color: #0f2744;
+  margin-bottom: 20px;
+}
+
+.conseilText { display: flex; flex-direction: column; gap: 14px; }
+
+.conseilItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px;
+  background: #f8fafc;
+  border-radius: 14px;
+  border-left: 4px solid #0d9488;
+}
+
+.conseilNum {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #0d9488, #0ea5e9);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.conseilItem p {
+  font-size: 15px;
+  color: #334155;
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.refreshBtn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 13px;
+  background: #f1f5f9;
+  border: none;
+  border-radius: 14px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  color: #475569;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.refreshBtn:hover { background: #e2e8f0; }
+
+.placeholderBox {
+  text-align: center;
+  padding: 50px 20px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 24px;
+  border: 2px dashed rgba(255,255,255,0.2);
+}
+
+.placeholderIcon { font-size: 52px; margin-bottom: 16px; }
+
+.placeholderBox p {
+  color: rgba(255,255,255,0.7);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .categoriesGrid { grid-template-columns: repeat(2, 1fr); }
+  .conseilsHeader h1 { font-size: 22px; }
+}

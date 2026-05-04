@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
+.rappelsContainer {
+  min-height: 100vh;
+  background: linear-gradient(145deg, #0f2744 0%, #1a4a7a 40%, #0d6e6e 100%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 16px 60px;
+  font-family: 'Nunito', sans-serif;
+}
+
+.rappelsCard {
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 36px 32px;
+  width: 100%;
+  max-width: 540px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+}
+
+.rappelsHeader {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.rappelsIcon { font-size: 48px; margin-bottom: 10px; }
+
+.rappelsHeader h1 {
+  font-size: 26px;
+  font-weight: 900;
+  color: #0f2744;
+  margin-bottom: 6px;
+}
+
+.rappelsHeader p { font-size: 14px; color: #64748b; font-weight: 600; }
+
+.enableAudioBtn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #f59e0b, #ef4444);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(239,68,68,0.35);
+}
+
+.enableAudioBtn:hover { transform: scale(1.02); }
+
+.audioEnabledBadge {
+  background: #f0fdf4;
+  border: 2px solid #86efac;
+  color: #15803d;
+  padding: 10px 16px;
+  border-radius: 14px;
+  font-weight: 800;
+  font-size: 14px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.infoMessage {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.formGroup { margin-bottom: 18px; }
+
+.formGroup label {
+  display: block;
+  font-weight: 800;
+  font-size: 14px;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.formGroup input,
+.formGroup select {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: 14px;
+  border: 2px solid #e2e8f0;
+  background: #f8fafc;
+  color: #1e293b;
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.formGroup input:focus,
+.formGroup select:focus {
+  border-color: #0d9488;
+  box-shadow: 0 0 0 4px rgba(13,148,136,0.15);
+  background: #ffffff;
+}
+
+.formGroup input::placeholder { color: #94a3b8; font-weight: 500; }
+
+.formRow2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #0d9488, #0ea5e9);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 17px;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 5px 18px rgba(13,148,136,0.35);
+}
+
+.submitBtn:hover:not(:disabled) { transform: translateY(-2px); }
+.submitBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.successBanner {
+  margin-top: 14px;
+  background: #f0fdf4;
+  border: 2px solid #86efac;
+  color: #15803d;
+  padding: 12px;
+  border-radius: 14px;
+  font-weight: 800;
+  font-size: 15px;
+  text-align: center;
+}
+
+.remindersList {
+  margin-top: 28px;
+  border-top: 2px solid #f1f5f9;
+  padding-top: 20px;
+}
+
+.remindersList h3 {
+  font-size: 17px;
+  font-weight: 900;
+  color: #1e293b;
+  margin-bottom: 14px;
+}
+
+.reminderItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #f8fafc;
+  border-radius: 14px;
+  margin-bottom: 10px;
+  border-left: 4px solid #0d9488;
+  flex-wrap: wrap;
+}
+
+.reminderItem strong {
+  font-size: 15px;
+  color: #1e293b;
+  font-weight: 800;
+  flex: 1;
+  min-width: 120px;
+}
+
+.reminderItem span {
+  font-size: 13px;
+  color: #475569;
+  font-weight: 600;
+  background: #e2e8f0;
+  padding: 4px 10px;
+  border-radius: 8px;
+}
+
+@media (max-width: 500px) {
+  .rappelsCard { padding: 24px 18px; }
+  .formRow2 { grid-template-columns: 1fr; }
+  .rappelsHeader h1 { font-size: 22px; }
+}

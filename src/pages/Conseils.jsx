@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Conseils.css';
+import styles from './Conseils.module.css';
 
 const conseilsData = {
   medicaments: [
@@ -85,17 +85,17 @@ const Conseils = () => {
   };
 
   return (
-    <div className="conseils-container">
-      <div className="conseils-header">
-        <h1>Astuces & Conseils</h1>
+    <div className={styles.conseilsContainer}>
+      <div className={styles.conseilsHeader}>
+        <h1>Astuces &amp; Conseils</h1>
         <p>Choisissez un thème pour recevoir des conseils santé</p>
       </div>
 
-      <div className="categories-grid">
+      <div className={styles.categoriesGrid}>
         {categories.map((cat) => (
           <button
             key={cat.id}
-            className={`category-btn ${selectedCategory === cat.id ? 'active' : ''}`}
+            className={`${styles.categoryBtn} ${selectedCategory === cat.id ? styles.active : ''}`}
             onClick={() => getConseils(cat)}
           >
             {cat.label}
@@ -103,20 +103,20 @@ const Conseils = () => {
         ))}
       </div>
 
-      <div className="conseils-result">
+      <div className={styles.conseilsResult}>
         {conseils.length > 0 && (
-          <div className="conseil-card">
+          <div className={styles.conseilCard}>
             <h2>{categories.find(c => c.id === selectedCategory)?.label}</h2>
-            <div className="conseil-text">
+            <div className={styles.conseilText}>
               {conseils.map((c, i) => (
-                <div key={i} className="conseil-item">
-                  <span className="conseil-num">{i + 1}</span>
+                <div key={i} className={styles.conseilItem}>
+                  <span className={styles.conseilNum}>{i + 1}</span>
                   <p>{c}</p>
                 </div>
               ))}
             </div>
             <button
-              className="refresh-btn"
+              className={styles.refreshBtn}
               onClick={() => getConseils(categories.find(c => c.id === selectedCategory))}
             >
               🔄 Autres conseils
@@ -125,8 +125,8 @@ const Conseils = () => {
         )}
 
         {conseils.length === 0 && (
-          <div className="placeholder-box">
-            <div className="placeholder-icon">💡</div>
+          <div className={styles.placeholderBox}>
+            <div className={styles.placeholderIcon}>💡</div>
             <p>Appuyez sur un thème ci-dessus pour recevoir vos conseils santé</p>
           </div>
         )}

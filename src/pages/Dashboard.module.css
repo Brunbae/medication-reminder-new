@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
+.dvRoot {
+  min-height: 100vh;
+  background: linear-gradient(145deg, #0f2744 0%, #1a4a7a 40%, #0d6e6e 100%);
+  padding: 30px 20px 60px;
+  font-family: 'Nunito', sans-serif;
+}
+
+.dvTop {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.dvClock {
+  font-size: 56px;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 4px;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  line-height: 1;
+}
+
+.dvDate {
+  font-size: 16px;
+  color: rgba(255,255,255,0.7);
+  margin-top: 6px;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+
+.dvTitleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto 24px;
+  padding: 0 8px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.dvTitle {
+  font-size: 28px;
+  font-weight: 900;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.dvBtnAdd {
+  background: linear-gradient(135deg, #10b981, #0ea5e9);
+  color: white;
+  padding: 12px 22px;
+  border-radius: 16px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(16,185,129,0.4);
+}
+
+.dvBtnAdd:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(16,185,129,0.5);
+}
+
+.dvSummary {
+  display: flex;
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto 30px;
+  padding: 0 8px;
+  flex-wrap: wrap;
+}
+
+.dvSummaryItem {
+  flex: 1;
+  min-width: 120px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 18px 16px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.dvSummaryNum {
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1;
+  color: #ffffff;
+}
+
+.dvSummaryLbl {
+  font-size: 13px;
+  color: rgba(255,255,255,0.75);
+  font-weight: 600;
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+.dvSummaryBlue  { border-top: 4px solid #38bdf8; }
+.dvSummaryGreen { border-top: 4px solid #34d399; }
+.dvSummaryOrange{ border-top: 4px solid #fb923c; }
+
+.dvCards {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 0 8px;
+}
+
+.dvCard {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.dvCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+}
+
+.dvCardTaken { opacity: 0.85; }
+
+.dvCardMoment {
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.dvCardContent {
+  padding: 16px 20px 12px;
+  flex: 1;
+}
+
+.dvCardName {
+  font-size: 22px;
+  font-weight: 900;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.dvCheck { margin-right: 4px; }
+
+.dvCardDosage {
+  font-size: 14px;
+  color: #475569;
+  margin-bottom: 4px;
+}
+
+.dvCardFreq {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+.dvCardHeure {
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.dvCardTakenMsg {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: #f0fdf4;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.dvCardActions {
+  display: flex;
+  gap: 10px;
+  padding: 12px 20px 18px;
+  flex-wrap: wrap;
+}
+
+.dvBtnTaken {
+  flex: 1;
+  min-width: 160px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 12px rgba(16,185,129,0.3);
+}
+
+.dvBtnTaken:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 18px rgba(16,185,129,0.4);
+}
+
+.dvBtnDone {
+  flex: 1;
+  min-width: 100px;
+  padding: 12px 16px;
+  background: #f0fdf4;
+  color: #15803d;
+  border-radius: 14px;
+  font-weight: 800;
+  font-size: 15px;
+  text-align: center;
+  border: 2px solid #bbf7d0;
+}
+
+.dvBtnDelete {
+  padding: 12px 16px;
+  background: rgba(239,68,68,0.08);
+  color: #dc2626;
+  border: 1px solid rgba(239,68,68,0.25);
+  border-radius: 14px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dvBtnDelete:hover { background: rgba(239,68,68,0.18); }
+
+.dvEmpty {
+  text-align: center;
+  padding: 60px 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.dvEmptyIcon { font-size: 64px; margin-bottom: 20px; }
+.dvEmptyText { color: #ffffff; font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+.dvEmptySub  { color: rgba(255,255,255,0.65); font-size: 15px; margin-bottom: 28px; }
+
+.dvBtnBigAdd {
+  display: inline-block;
+  background: linear-gradient(135deg, #10b981, #0ea5e9);
+  color: white;
+  padding: 16px 32px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 18px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 5px 20px rgba(16,185,129,0.4);
+}
+
+.dvBtnBigAdd:hover { transform: scale(1.05); }
+
+@media (max-width: 600px) {
+  .dvClock { font-size: 40px; }
+  .dvTitle { font-size: 22px; }
+  .dvSummaryNum { font-size: 32px; }
+  .dvCardName { font-size: 18px; }
+}

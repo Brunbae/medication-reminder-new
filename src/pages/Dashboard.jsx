@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getReminders, deleteReminder } from '../services/reminderService';
-import './Dashboard.css';
+import styles from './Dashboard.module.css';
 
 const Dashboard = () => {
   const [reminders, setReminders] = useState([]);
@@ -36,7 +36,6 @@ const Dashboard = () => {
     if (!heure) return '--:--';
     const [h, m] = heure.split(':');
     const hNum = parseInt(h);
-    const suffix = hNum < 12 ? 'AM' : 'PM';
     const h12 = hNum === 0 ? 12 : hNum > 12 ? hNum - 12 : hNum;
     return `${h12}h${m}`;
   };
@@ -53,106 +52,83 @@ const Dashboard = () => {
   const total = reminders.length;
 
   return (
-    <div className="dv-root">
+    <div className={styles.dvRoot}>
 
-      {/* HORLOGE EN HAUT */}
-      <div className="dv-top">
-        <div className="dv-clock">{formatClock(currentTime)}</div>
-        <div className="dv-date">{formatDate(currentTime)}</div>
+      <div className={styles.dvTop}>
+        <div className={styles.dvClock}>{formatClock(currentTime)}</div>
+        <div className={styles.dvDate}>{formatDate(currentTime)}</div>
       </div>
 
-      {/* TITRE */}
-      <div className="dv-title-row">
-        <h1 className="dv-title">💊 Mes Médicaments</h1>
-        <Link to="/rappels" className="dv-btn-add">＋ Ajouter</Link>
+      <div className={styles.dvTitleRow}>
+        <h1 className={styles.dvTitle}>💊 Mes Médicaments</h1>
+        <Link to="/rappels" className={styles.dvBtnAdd}>＋ Ajouter</Link>
       </div>
 
-      {/* RÉSUMÉ */}
-      <div className="dv-summary">
-        <div className="dv-summary-item dv-summary-blue">
-          <div className="dv-summary-num">{total}</div>
-          <div className="dv-summary-lbl">Médicaments<br/>programmés</div>
+      <div className={styles.dvSummary}>
+        <div className={`${styles.dvSummaryItem} ${styles.dvSummaryBlue}`}>
+          <div className={styles.dvSummaryNum}>{total}</div>
+          <div className={styles.dvSummaryLbl}>Médicaments<br/>programmés</div>
         </div>
-        <div className="dv-summary-item dv-summary-green">
-          <div className="dv-summary-num">{pris}</div>
-          <div className="dv-summary-lbl">Déjà<br/>pris aujourd'hui</div>
+        <div className={`${styles.dvSummaryItem} ${styles.dvSummaryGreen}`}>
+          <div className={styles.dvSummaryNum}>{pris}</div>
+          <div className={styles.dvSummaryLbl}>Déjà<br/>pris aujourd'hui</div>
         </div>
-        <div className="dv-summary-item dv-summary-orange">
-          <div className="dv-summary-num">{total - pris}</div>
-          <div className="dv-summary-lbl">Encore<br/>à prendre</div>
+        <div className={`${styles.dvSummaryItem} ${styles.dvSummaryOrange}`}>
+          <div className={styles.dvSummaryNum}>{total - pris}</div>
+          <div className={styles.dvSummaryLbl}>Encore<br/>à prendre</div>
         </div>
       </div>
 
-      {/* LISTE */}
       {reminders.length === 0 ? (
-        <div className="dv-empty">
-          <div className="dv-empty-icon">💊</div>
-          <p className="dv-empty-text">Vous n'avez pas encore de rappel.</p>
-          <p className="dv-empty-sub">Appuyez sur le bouton vert pour en ajouter un.</p>
-          <Link to="/rappels" className="dv-btn-big-add">＋ Ajouter un médicament</Link>
+        <div className={styles.dvEmpty}>
+          <div className={styles.dvEmptyIcon}>💊</div>
+          <p className={styles.dvEmptyText}>Vous n'avez pas encore de rappel.</p>
+          <p className={styles.dvEmptySub}>Appuyez sur le bouton vert pour en ajouter un.</p>
+          <Link to="/rappels" className={styles.dvBtnBigAdd}>＋ Ajouter un médicament</Link>
         </div>
       ) : (
-        <div className="dv-cards">
+        <div className={styles.dvCards}>
           {reminders.map((reminder) => {
             const moment = getMoment(reminder.heure);
             const isTaken = takenIds.includes(reminder.id);
             return (
               <div
                 key={reminder.id}
-                className={`dv-card ${isTaken ? 'dv-card--taken' : ''}`}
+                className={`${styles.dvCard} ${isTaken ? styles.dvCardTaken : ''}`}
                 style={{ borderLeft: `8px solid ${moment.border}`, background: isTaken ? '#f0fdf4' : '#fff' }}
               >
-                {/* MOMENT (Matin / Soir etc) */}
-                <div className="dv-card-moment" style={{ background: moment.color, color: moment.text }}>
+                <div className={styles.dvCardMoment} style={{ background: moment.color, color: moment.text }}>
                   {moment.label}
                 </div>
 
-                {/* CONTENU */}
-                <div className="dv-card-content">
-                  <div className="dv-card-name">
-                    {isTaken && <span className="dv-check">✅ </span>}
+                <div className={styles.dvCardContent}>
+                  <div className={styles.dvCardName}>
+                    {isTaken && <span className={styles.dvCheck}>✅ </span>}
                     {reminder.medicament}
                   </div>
-
                   {reminder.dosage && (
-                    <div className="dv-card-dosage">
-                      💉 Dosage : <strong>{reminder.dosage}</strong>
-                    </div>
+                    <div className={styles.dvCardDosage}>💉 Dosage : <strong>{reminder.dosage}</strong></div>
                   )}
-
                   {reminder.frequence && (
-                    <div className="dv-card-freq">
-                      🔄 {reminder.frequence}
-                    </div>
+                    <div className={styles.dvCardFreq}>🔄 {reminder.frequence}</div>
                   )}
-
-                  <div className="dv-card-heure" style={{ color: moment.text }}>
+                  <div className={styles.dvCardHeure} style={{ color: moment.text }}>
                     ⏰ À prendre à <strong>{formatHeure(reminder.heure)}</strong>
                   </div>
-
                   {isTaken && (
-                    <div className="dv-card-taken-msg">
-                      ✅ Vous avez pris ce médicament aujourd'hui. Bravo !
-                    </div>
+                    <div className={styles.dvCardTakenMsg}>✅ Vous avez pris ce médicament aujourd'hui. Bravo !</div>
                   )}
                 </div>
 
-                {/* BOUTONS */}
-                <div className="dv-card-actions">
+                <div className={styles.dvCardActions}>
                   {!isTaken ? (
-                    <button
-                      className="dv-btn-taken"
-                      onClick={() => handleTaken(reminder.id)}
-                    >
+                    <button className={styles.dvBtnTaken} onClick={() => handleTaken(reminder.id)}>
                       ✅ J'ai pris ce médicament
                     </button>
                   ) : (
-                    <div className="dv-btn-done">✅ Pris !</div>
+                    <div className={styles.dvBtnDone}>✅ Pris !</div>
                   )}
-                  <button
-                    className="dv-btn-delete"
-                    onClick={() => handleDelete(reminder.id)}
-                  >
+                  <button className={styles.dvBtnDelete} onClick={() => handleDelete(reminder.id)}>
                     🗑 Supprimer
                   </button>
                 </div>

@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
+.registerContainer {
+  min-height: 100vh;
+  background: linear-gradient(145deg, #0f2744 0%, #1a4a7a 40%, #0d6e6e 100%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 16px 60px;
+  font-family: 'Nunito', sans-serif;
+}
+
+.registerCard {
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 36px 32px;
+  width: 100%;
+  max-width: 560px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+}
+
+.registerHeader {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.registerIcon { font-size: 44px; margin-bottom: 10px; }
+
+.registerHeader h1 {
+  font-size: 26px;
+  font-weight: 900;
+  color: #0f2744;
+  margin-bottom: 4px;
+}
+
+.registerSub {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+/* Barre de progression */
+.progressBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+  gap: 0;
+}
+
+.progressStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.stepCircle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.progressStep.active .stepCircle {
+  background: linear-gradient(135deg, #0d9488, #0ea5e9);
+  color: white;
+  box-shadow: 0 4px 12px rgba(13,148,136,0.4);
+}
+
+.progressStep span {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.progressStep.active span { color: #0d9488; }
+
+.progressLine {
+  width: 50px;
+  height: 3px;
+  background: #e2e8f0;
+  margin-bottom: 18px;
+  transition: background 0.3s;
+}
+
+.progressLine.active { background: linear-gradient(90deg, #0d9488, #0ea5e9); }
+
+/* Étape formulaire */
+.formEtape { margin-bottom: 8px; }
+
+.formRow2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.formGroup { margin-bottom: 16px; }
+
+.formGroup label {
+  display: block;
+  font-weight: 800;
+  font-size: 14px;
+  color: #1e293b;
+  margin-bottom: 7px;
+}
+
+.formGroup input,
+.formGroup select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 13px;
+  border: 2px solid #e2e8f0;
+  background: #f8fafc;
+  color: #1e293b;
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.formGroup input:focus,
+.formGroup select:focus {
+  border-color: #0d9488;
+  box-shadow: 0 0 0 4px rgba(13,148,136,0.15);
+  background: #ffffff;
+}
+
+.formGroup input::placeholder { color: #94a3b8; font-weight: 500; }
+
+.formGroup small {
+  display: block;
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 5px;
+}
+
+/* Radio sexe */
+.radioGroup { display: flex; gap: 12px; }
+
+.radioBtn {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 2px solid #e2e8f0;
+  background: #f8fafc;
+  font-weight: 700;
+  font-size: 14px;
+  color: #475569;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.radioBtn input { display: none; }
+.radioBtn.selected {
+  border-color: #0d9488;
+  background: #f0fdf4;
+  color: #0d9488;
+}
+
+/* Groupe sanguin */
+.bloodGroupGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.bloodBtn {
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #e2e8f0;
+  background: #f8fafc;
+  font-weight: 800;
+  font-size: 15px;
+  color: #475569;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bloodBtn input { display: none; }
+.bloodBtn.selected {
+  border-color: #ef4444;
+  background: #fef2f2;
+  color: #ef4444;
+}
+
+/* Messages */
+.errorMsg {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #dc2626;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.successMsg {
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  color: #15803d;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+/* Boutons navigation */
+.navBtns {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.btnPrimary {
+  flex: 1;
+  padding: 14px;
+  background: linear-gradient(135deg, #0d9488, #0ea5e9);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 14px rgba(13,148,136,0.35);
+}
+
+.btnPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(13,148,136,0.45);
+}
+
+.btnSecondary {
+  padding: 14px 20px;
+  background: #f1f5f9;
+  color: #475569;
+  border: none;
+  border-radius: 14px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btnSecondary:hover { background: #e2e8f0; }
+
+.authFooter {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.authFooter a {
+  color: #0d9488;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.authFooter a:hover { text-decoration: underline; }
+
+@media (max-width: 500px) {
+  .registerCard { padding: 24px 18px; }
+  .formRow2 { grid-template-columns: 1fr; }
+  .bloodGroupGrid { grid-template-columns: repeat(4, 1fr); }
+}
