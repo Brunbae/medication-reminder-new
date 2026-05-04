@@ -30,12 +30,18 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "last 2 safari versions",
+      "last 2 ios_saf versions"
     ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-nullish-coalescing-operator": "^7.28.6",
+    "@babel/plugin-transform-optional-chaining": "^7.28.6"
   }
 }
