@@ -9,18 +9,17 @@ import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Conseils from './pages/Conseils';
+import ForgotPassword from './pages/ForgotPassword';
 import { getReminders, updateReminder } from './services/reminderService';
 import alarmService from './services/alarmService';
 
 function App() {
-
   const handleAlarmTrigger = useCallback((reminder) => {
     alarmService.triggerAlarm(reminder, async (reminderId) => {
       await updateReminder(reminderId, { triggered: false });
       scheduleAllAlarms();
     });
   }, []);
-
   const scheduleAllAlarms = useCallback(() => {
     alarmService.clearAllTimeouts();
     const reminders = getReminders();
@@ -28,22 +27,18 @@ function App() {
       alarmService.scheduleAlarm(reminder, handleAlarmTrigger);
     });
   }, [handleAlarmTrigger]);
-
   useEffect(() => {
     if (Notification.permission === 'default') {
       Notification.requestPermission();
     }
     scheduleAllAlarms();
-
     const interval = setInterval(scheduleAllAlarms, 60000);
-
     return () => {
       clearInterval(interval);
       alarmService.clearAllTimeouts();
       alarmService.stopAlarm();
     };
   }, [scheduleAllAlarms]);
-
   return (
     <Router>
       <Navbar />
@@ -56,9 +51,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/conseils" element={<Conseils />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
     </Router>
   );
 }
-
 export default App;
