@@ -50,7 +50,7 @@ const Register = () => {
         email: form.email, password: form.password,
       });
       setIsError(false); setMessage('✅ Compte créé avec succès !');
-      setTimeout(() => { window.location.href = '/login'; }, 1500);
+      setTimeout(() => { window.location.replace('/login'); }, 1500);
     } catch (error) {
       setIsError(true); setMessage('❌ Erreur lors de la création du compte. Veuillez réessayer.');
     }
