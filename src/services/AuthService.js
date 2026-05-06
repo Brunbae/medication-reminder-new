@@ -1,7 +1,5 @@
 import axios from "axios";
-
-const API_URL = https://medication-reminder-backend-production.up.railway.app/api/auth
-
+const API_URL = "https://medication-reminder-backend-production.up.railway.app/api/auth";
 class AuthService {
   async register(user) {
     const response = await axios.post(`${API_URL}/register`, user);
@@ -10,7 +8,6 @@ class AuthService {
     }
     return response.data;
   }
-
   async login(email, password) {
     const response = await axios.post(`${API_URL}/login`, { email, password });
     if (response.data.token) {
@@ -18,17 +15,13 @@ class AuthService {
     }
     return response.data;
   }
-
   logout() {
     localStorage.removeItem("user");
   }
-
   getCurrentUser() {
     return JSON.parse(localStorage.getItem("user"));
   }
 }
-
-// Configurer Axios pour ajouter le token automatiquement
 axios.interceptors.request.use(
   (config) => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -39,6 +32,5 @@ axios.interceptors.request.use(
   },
   (error) => Promise.reject(error)
 );
-
 const authService = new AuthService();
 export default authService;
